@@ -280,7 +280,7 @@ export default class CNPJ {
     try {
       this._registration_number = registration_number
       const data = await CNPJDB.findOne({ registration_number: this.registration_number })
-      if (!data) return { captcha: 'af4fc5a3-1ac5-4e6d-819d-324d412a5e9d' }
+      if (!data) return { captcha: process.env.RFB_CAPTCHA_KEY }
       return data
     } catch(e) { 
       throw new Error(e.message)
