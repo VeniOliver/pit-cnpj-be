@@ -24,7 +24,7 @@ export default class CNPJ {
    */
   set _registration_number(registration_number) {
     if (!registration_number) throw new Error('Registration number is required.')
-    this.registration_number = registration_number?.replace(/\. |\/|-/g, '')
+    this.registration_number = registration_number?.replace(/[^\d]/g, '')
   }
 
   /**
