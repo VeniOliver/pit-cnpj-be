@@ -1,6 +1,6 @@
 # pit-cnpj-be
 
-API em Node.js para consultar dados de CNPJ (Cadastro Nacional da Pessoa Jurídica) diretamente da Receita Federal.
+Back-End de API para consultar dados de CNPJ (Cadastro Nacional da Pessoa Jurídica) diretamente da Receita Federal.
 
 Essa API é resultado do PIT Atividade da disciplina Projeto Integrador Transdisciplinar em Engenharia de Software II do curso de Bacharelado em Engenharia de Software da Universidade Cruzeiro do Sul.
 
@@ -13,8 +13,9 @@ Um demonstração com implementação dos serviços dessa API está disponível 
 
 ## Funcionalidades
 
-- **Consultar CNPJ**: Acesse informações públicas sobre uma empresa registrada no Brasil, fornecendo seu número de CNPJ.
-- **Integração com a API**: Conecta-se diretamente ao serviço de CNPJ da Receita Federal para recuperar dados atualizados de empresas.
+- **Consultar CNPJ**: Acesse informações públicas sobre uma empresa fornecendo seu número de CNPJ.
+- **Integração com a Receita Federal do Brasil**: As consultas são realizadas diretamente no site da Receita Federal do Brasil.
+- **Retorno do captcha para o usuário**: A API retornará o captcha do site da Receita Federal do Brasil para o usuário resolvê-lo.
 
 ## Endpoints
 

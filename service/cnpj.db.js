@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
  * with fields corresponding to various attributes of a company's registration and details.
  */
 const Schema = new mongoose.Schema({
+
   /**
    * The company's registration number (CNPJ).
    * This field is required and must be a string.
@@ -15,6 +16,7 @@ const Schema = new mongoose.Schema({
     unique: true,
     required: [true, 'Registration number is required.']
   },
+  
   /**
    * The date the company was registered.
    * This field is required and must be a string.
