@@ -4,6 +4,8 @@ API em Node.js para consultar dados de CNPJ (Cadastro Nacional da Pessoa Jurídi
 
 Essa API é resultado do PIT Atividade da disciplina Projeto Integrador Transdisciplinar em Engenharia de Software II do curso de Bacharelado em Engenharia de Software da Universidade Cruzeiro do Sul.
 
+Um demonstração com implementação dos serviços dessa API está disponível [aqui](https://pit-cnpj.venith.com.br)
+
 ## Dados do aluno
 - **Nome**: VENILSON PEREIRA DE OLIVEIRA
 - **RGM**: 31237444
@@ -14,19 +16,9 @@ Essa API é resultado do PIT Atividade da disciplina Projeto Integrador Transdis
 - **Consultar CNPJ**: Acesse informações públicas sobre uma empresa registrada no Brasil, fornecendo seu número de CNPJ.
 - **Integração com a API**: Conecta-se diretamente ao serviço de CNPJ da Receita Federal para recuperar dados atualizados de empresas.
 
-## Instalação
-
-Instale o pacote usando npm ou yarn:
-
-```bash
-npm install pit-cnpj-be --save
-```
-Ou com yarn:
-
-```bash
-yarn add pit-cnpj-be
-```
 ## Endpoints
+
+- **Endpoint**: https://pit-cnpj-6a154954b78f.herokuapp.com
 
 ### 1. **Consultar CNPJ na base da dados da API**
 - **Método**: `GET`
@@ -95,8 +87,6 @@ O código acima deve ser utilizado no lado do cliente como parâmetro `siteKey` 
   "__v": 0
 } 
 ```
-
-
 
 ### 2. **Consultar CNPJ na Receita Federal**
 - **Método**: `POST`
