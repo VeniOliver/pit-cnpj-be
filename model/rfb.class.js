@@ -19,7 +19,7 @@ export default class RFB {
     this.rf_url = 'https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/valida_recaptcha.asp'
     
     // Set CookieJar to store and manage cookies
-    this.jar = new CookieJar()
+    const jar = new CookieJar()
     
     // Wrap axios client with cookie jar support
     this.client = wrapper(axios.create({ jar }))
@@ -34,7 +34,7 @@ export default class RFB {
    */
   async getCNPJData(cnpj, capcha_response) {
     // Create a session by making an initial POST request to the RFB URL
-    await client.post(this.rf_url, {})
+    await this.client.post(this.rf_url, {})
 
     // Prepare the payload for the request
     const payload = {
@@ -46,7 +46,7 @@ export default class RFB {
 
     try {
       // Make a POST request to retrieve the CNPJ data
-      const res = await client.post(this.rf_url, 
+      const res = await this.client.post(this.rf_url, 
         payload, 
         { 
           headers: {

@@ -8,7 +8,7 @@ const router = express.Router()
  * Router find all cnpj
  * 
  * This route handler is responsible for fetching all CNPJ records from the database. 
- * It uses the `CNPJ.findAll()` method to retrieve the data and returns the results as a JSON response.
+ * It uses the `CNPJ.find()` method to retrieve the data and returns the results as a JSON response.
  * 
  * @route GET /find
  * @returns {Object[]} 200 - An array of CNPJ records
@@ -17,11 +17,31 @@ const router = express.Router()
 router.get('/find', async (req, res) => {
   try {
     const cnpj = new CNPJ()
-    return res.status(200).send(await CNPJ.findAll())
+    return res.status(200).send(await cnpj.find())
   } catch (e) {
     res.status(500).send(new Error(e.message, e.code))
   }
 })
+
+/**
+ * Router find cnpj
+ * 
+ * This route handler is responsible for fetching a CNPJ records from the database. 
+ * It uses the `CNPJ.findByRegistrationNumber()` method to retrieve the data and returns the results as a JSON response.
+ * 
+ * @route GET /find
+ * @returns {Object} 200 - An object of CNPJ
+ * @throws {Error} 500 - If an error occurs while fetching the data
+ */
+router.get('/:cnpj', async (req, res) => {
+  try {
+    const cnpj = new CNPJ()
+    return res.status(200).send(await cnpj.findByRegistrationNumber(req?.params?.cnpj))
+  } catch (e) {
+    res.status(500).send(new Error(e.message, e.code))
+  }
+})
+
 
 /**
  * Search cnpj
@@ -35,11 +55,12 @@ router.get('/find', async (req, res) => {
  * @returns {Object} 201 - The found CNPJ record or the data from RFB
  * @throws {Error} 500 - If an error occurs while processing the search
  */
-router.post('/search', async (req, res) => {
+router.post('/rfb', async (req, res) => {
   try {
     const cnpj = new CNPJ()
-    return res.status(201).send(await CNPJ.search(req?.body))
+    return res.status(201).send(await cnpj.findInRFB(req?.body))
   } catch (e) {
+    console.log(e)
     res.status(500).send(new Error(e.message, e.code))
   }
 })

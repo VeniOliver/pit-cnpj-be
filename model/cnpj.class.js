@@ -24,7 +24,7 @@ export default class CNPJ {
    */
   set _registration_number(registration_number) {
     if (!registration_number) throw new Error('Registration number is required.')
-    this.registration_number = registration_number
+    this.registration_number = registration_number?.replace(/\. |\/|-/g, '')
   }
 
   /**
@@ -240,20 +240,13 @@ export default class CNPJ {
    * @returns {Object} The CNPJ data from the local database or RFB.
    * @throws {Error} If an error occurs during the search or saving process.
    */
-  async search(params) {
+  async findInRFB(params) {
     try {
       this._registration_number = params?.registration_number
       this._captcha_response = params?.captcha_response
-
-      // Check in local database
-      const find_database = this.find(this.registration_number)
-      if (find_database) {
-        return find_database
-      }
-
-      // If not found in database, search in RFB
-      const find_rfb = await RFB.getCNPJData(this.registration_number, this.captcha_response)
-
+      // Search in RFB
+      let rfb = new RFB()
+      const find_rfb = await rfb.getCNPJData(this.registration_number, this.captcha_response)
       // Save the data to database
       return await this.save(find_rfb)
     } catch(e) { 
@@ -262,12 +255,12 @@ export default class CNPJ {
   }
 
   /**
-   * Retrieves all CNPJ records from the database.
+   * Retrieves CNPJ records from the database.
    * 
    * @returns {Array} An array of up to 100 CNPJ records in the database.
    * @throws {Error} If an error occurs during the retrieval process.
    */
-  async findAll() {
+  async find() {
     try {
       return await CNPJDB.find({}).limit(100)
     } catch(e) { 
@@ -283,10 +276,12 @@ export default class CNPJ {
    * @returns {Object|null} The CNPJ record if found, or null if not found.
    * @throws {Error} If an error occurs during the search process.
    */
-  async find(registration_number) {
+  async findByRegistrationNumber(registration_number) {
     try {
       this._registration_number = registration_number
-      return await CNPJDB.find({ registration_number: this.registration_number })
+      const data = await CNPJDB.findOne({ registration_number: this.registration_number })
+      if (!data) return { captcha: 'af4fc5a3-1ac5-4e6d-819d-324d412a5e9d' }
+      return data
     } catch(e) { 
       throw new Error(e.message)
     }
@@ -327,10 +322,11 @@ export default class CNPJ {
       this._status_reason = data?.status_reason
       this._special_status = data?.special_status
       this._special_status_date = data?.special_status_date
-
+      // Verify duplicate
+      const duplicate = await this.findByRegistrationNumber(this.registration_number)
+      if (duplicate?._id) return duplicate
       // Create a log entry
       this.logs.push(new Log('create'))
-
       // Save the data to the database
       return await CNPJDB.create(this)
     } catch(e) { 

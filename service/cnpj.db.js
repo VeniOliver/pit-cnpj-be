@@ -11,7 +11,8 @@ const Schema = new mongoose.Schema({
    * This field is required and must be a string.
    */
   registration_number: {
-    type: String,
+    type: Number,
+    unique: true,
     required: [true, 'Registration number is required.']
   },
   /**
@@ -52,7 +53,7 @@ const Schema = new mongoose.Schema({
    * The company's secondary economic activity codes and descriptions.
    */
   secondary_activities: {
-    type: String
+    type: Array
   },
   /**
    * The legal nature of the company.

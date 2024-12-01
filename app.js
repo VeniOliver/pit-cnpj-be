@@ -23,7 +23,9 @@ app.use(helmet())
 // using bodyParser to parse JSON bodies into JS objects
 app.use(bodyParser.json({limit: '5mb', extended: true}))
 // enabling CORS
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:4200'
+}))
 //check api key
 app.use(auth.apiKeyVerify)
 //routers
