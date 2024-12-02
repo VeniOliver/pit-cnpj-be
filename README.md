@@ -17,7 +17,7 @@ A documentação está disponível [aqui](https://github.com/VeniOliver/pit-cnpj
 
 ## Vídeo de demonstração
 
-![Demonstração](https://youtu.be/fy1dzJDhMRo)
+![Demonstração](https://www.youtube.com/watch?v=fy1dzJDhMRo)
 
 
 ## Funcionalidades
