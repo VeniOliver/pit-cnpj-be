@@ -9,13 +9,13 @@ Este repositório contém a documentação detalhada sobre o sistema, incluindo 
 
 ## Índice
 
-1. **[Diagramas](docs/diagrams.md)**  
+1. **[Diagramas](./diagrams.md)**  
    Uma visão geral de todos os diagramas importantes que descrevem a arquitetura e o fluxo do sistema.
 
-2. **[Relatório de Qualidade do Sistema](docs/system.quality.report.md)**  
+2. **[Relatório de Qualidade do Sistema](./system.quality.report.md)**  
    Relatório que analisa a qualidade do sistema, incluindo métricas e sugestões de melhorias.
 
-3. **[Resultados dos Testes de Funcionalidades](docs/test.results.functionalities.md)**  
+3. **[Resultados dos Testes de Funcionalidades](./test.results.functionalities.md)**  
    Relatório detalhado sobre os testes realizados nas funcionalidades do sistema, com resultados e possíveis falhas.
 
 ## Como Navegar
