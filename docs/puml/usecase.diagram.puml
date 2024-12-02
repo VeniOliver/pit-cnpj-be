@@ -1,0 +1,21 @@
+@startuml
+
+actor "User" as User
+actor "RFB System" as RFB
+
+usecase "Validate CNPJ" as UC1
+usecase "Get CNPJ Data" as UC2
+usecase "Capture Error" as UC3
+usecase "Log Error" as UC4
+
+User -> UC1 : Request CNPJ validation
+User -> UC2 : Request CNPJ data
+RFB -> UC2 : Send CNPJ data
+RFB -> UC3 : Check for error in the response
+RFB -> UC4 : Log error
+
+UC2 --> UC3 : Failure to fetch data
+UC2 --> UC4 : Success in fetching data
+
+@enduml
+

@@ -1,0 +1,7 @@
+@startuml
+class Error {
+    +message: string
+    +code: string
+    +constructor(message: string, code: string): void
+}
+@enduml

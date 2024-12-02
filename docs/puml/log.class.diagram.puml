@@ -1,0 +1,10 @@
+@startuml
+class Log {
+    -timestamp: Date
+    -action: string
+    +constructor(action: string)
+}
+
+Log : +constructor(action: string)
+
+@enduml

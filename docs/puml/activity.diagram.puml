@@ -1,0 +1,21 @@
+@startuml
+
+start
+
+:Start CNPJ Validation Request;
+:Validate CAPTCHA;
+:Send Request to RFB System;
+:Receive Response from RFB;
+
+if (Error in Response?) then (yes)
+  :Capture Error;
+  :Log Error;
+  stop
+else (no)
+  :Extract CNPJ Data;
+  :Parse Data;
+  :Return CNPJ Data to User;
+  stop
+endif
+
+@enduml

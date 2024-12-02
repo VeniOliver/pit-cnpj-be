@@ -1,0 +1,13 @@
+@startuml
+class Auth {
+    +apiKeyVerify(req: Object, res: Object, next: Function): void
+}
+
+class Error {
+    +message: String
+    +code: Number
+    +constructor(message: String, code: Number): void
+}
+
+Auth -> Error : uses
+@enduml

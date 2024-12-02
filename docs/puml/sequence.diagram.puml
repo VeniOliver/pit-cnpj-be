@@ -1,0 +1,34 @@
+@startuml
+
+actor User
+
+participant "CNPJ" as CNPJ
+participant "HTML" as HTML
+participant "RFB" as RFB
+participant "Log" as Log
+participant "Error" as Error
+
+User -> RFB : getCNPJData(cnpj, capcha_response)
+activate RFB
+RFB -> RFB : post initial request
+RFB -> RFB : prepare payload
+RFB -> RFB : post request with payload
+RFB -> HTML : parseCNPJ(response_data)
+activate HTML
+HTML -> HTML : decodeText(response_data)
+HTML -> HTML : parseCNPJTable(response_data)
+deactivate HTML
+RFB -> CNPJ : return parsed data
+deactivate RFB
+
+alt Error occurs
+    RFB -> Error : throw Error
+    Error -> Log : log error message
+end
+
+User -> CNPJ : retrieve CNPJ data
+CNPJ -> Log : log action
+activate Log
+deactivate Log
+
+@enduml

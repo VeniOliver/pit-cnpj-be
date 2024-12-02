@@ -1,0 +1,83 @@
+@startuml
+class CNPJ {
+    +_registration_number: string
+    +_opening_date: string
+    +_company_name: string
+    +_trade_name: string
+    +_size: string
+    +_main_activity: string
+    +_secondary_activities: string
+    +_legal_nature: string
+    +_street: string
+    +_number: string
+    +_complement: string
+    +_zip_code: string
+    +_neighborhood: string
+    +_city: string
+    +_state: string
+    +_email: string
+    +_phone: string
+    +_responsible_entity: string
+    +_status: string
+    +_status_date: string
+    +_status_reason: string
+    +_special_status: string
+    +_special_status_date: string
+    +_captcha_response: string
+    +logs: array
+    +set _registration_number(registration_number: string): void
+    +set _opening_date(opening_date: string): void
+    +set _company_name(company_name: string): void
+    +set _trade_name(trade_name: string): void
+    +set _size(size: string): void
+    +set _main_activity(main_activity: string): void
+    +set _secondary_activities(secondary_activities: string): void
+    +set _legal_nature(legal_nature: string): void
+    +set _street(street: string): void
+    +set _number(number: string): void
+    +set _complement(complement: string): void
+    +set _zip_code(zip_code: string): void
+    +set _neighborhood(neighborhood: string): void
+    +set _city(city: string): void
+    +set _state(state: string): void
+    +set _email(email: string): void
+    +set _phone(phone: string): void
+    +set _responsible_entity(responsible_entity: string): void
+    +set _status(status: string): void
+    +set _status_date(status_date: string): void
+    +set _status_reason(status_reason: string): void
+    +set _special_status(special_status: string): void
+    +set _special_status_date(special_status_date: string): void
+    +set _captcha_response(captcha_response: string): void
+    +findInRFB(params: object): object
+    +find(): array
+    +findByRegistrationNumber(registration_number: string): object
+    +save(data: object): object
+}
+
+class Error {
+    +message: string
+    +code: number
+    +constructor(message: string, code: number): void
+}
+
+class Log {
+    +action: string
+    +constructor(action: string): void
+}
+
+class RFB {
+    +getCNPJData(registration_number: string, captcha_response: string): object
+}
+
+class CNPJDB {
+    +find(query: object): array
+    +findOne(query: object): object
+    +create(data: object): object
+}
+
+CNPJ -> Error : throws
+CNPJ -> Log : uses
+CNPJ -> RFB : calls
+CNPJ -> CNPJDB : interacts
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class RFB {
+    -rf_url: string
+    -client: object
+    +constructor()
+    +getCNPJData(cnpj: string, capcha_response: string): Object
+}
+
+RFB : +constructor()
+RFB : +getCNPJData(cnpj: string, capcha_response: string): Object
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class HTML {
+    +cnpj_table_fields: Object
+    +decodeText(text: string): string
+    +parseCNPJ(html: string): Object
+    +parseCNPJTable(html: Object, multiple: boolean, position: number): Object
+}
+
+HTML : +get cnpj_table_fields()
+HTML : +decodeText(text: string)
+HTML : +parseCNPJ(html: string)
+HTML : +parseCNPJTable(html: Object, multiple: boolean, position: number)
+
+@enduml
