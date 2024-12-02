@@ -24,7 +24,7 @@ app.use(helmet())
 app.use(bodyParser.json({limit: '5mb', extended: true}))
 // enabling CORS
 app.use(cors({
-  origin: ['http://localhost:4200', 'https://pit-cnpj.venith.com.br']
+  origin: 'https://pit-cnpj.venith.com.br'
 }))
 //check api key
 app.use(auth.apiKeyVerify)
